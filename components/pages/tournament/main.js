@@ -54,7 +54,8 @@ let Tournament = function(){
       }else{
         test = document.getElementById('round_'+(round_no-1)+'_pointer_'+1);
       }
-      let height = test.getBoundingClientRect().height;
+      const height = test.getBoundingClientRect().height;
+      const top = height/2;
       let rounds_elm = document.createElement('div');
       rounds_elm.setAttribute('id','Round_'+round_no);
       rounds_elm.setAttribute('class','col-md-2');
@@ -62,10 +63,12 @@ let Tournament = function(){
       let current_round_str = '';
         current_round_str+= '<h4>Round '+round_no+'</h4>';
         for(var i=1; i<=self.no_of_teams_left;i++){
-          current_round_str+= '<div id="round_'+round_no+'_pointer_'+i+'" style="height:'+(height*2)+'px">'
-            current_round_str+= '<div class="horizontal-line" style="top:'+((height)/2)+'px"></div>'
-            current_round_str+= '<div class="vertical-line" style="top:'+((height)/2)+'px; height:'+(height)+'px"></div>'
-            current_round_str+= '<div class="horizontal-line" style="top:'+((height)/2)+'px"></div>'
+          current_round_str+= '<div id="round_'+round_no+'_pointer_'+i+'" class="relative" style="height:'+(height*2)+'px">'
+            current_round_str+='<div class="absolute" style="top:'+(top-22)+'px">Winner</div>'
+            current_round_str+= '<div class="horizontal-line" style="top:'+top+'px"></div>'
+            current_round_str+= '<div class="vertical-line" style="top:'+top+'px; height:'+(height)+'px"></div>'
+            current_round_str+= '<div class="horizontal-line" style="top:'+top+'px"></div>'
+            current_round_str+='<div class="absolute" style="top:'+(top+height+4)+'px">Winner</div>'
           current_round_str+='</div>';
         }
       rounds_elm.innerHTML = current_round_str;

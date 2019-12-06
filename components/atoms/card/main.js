@@ -13,7 +13,7 @@ var Card = function(){
       for(var i=0;i<self.card_data.length;i++){
         var cardData_1 = self.card_data[i];
         var cardData_2 = self.card_data[i+1];
-        var card = '<div id="card_wrapper" class="row border p-10">';
+        var card = '<div id="card_wrapper" class="row card_wrapper border p-10">';
                 card+='<div id=card'+cardData_1.teamId+' class="col-md-12">'
                   card+= cardData_1.teamName;
                 card+='</div>';

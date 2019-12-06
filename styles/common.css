@@ -34,3 +34,15 @@
   width: 3px;
   background-color: #000;
 }
+
+.absolute{
+  position: absolute;
+}
+
+.top-0{
+  top:0px;
+}
+
+.bottom-0{
+  bottom: 0px;
+}
