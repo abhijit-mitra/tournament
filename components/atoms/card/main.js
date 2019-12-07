@@ -1,8 +1,12 @@
 var Card = function(){
   let obj={
-    init: function(selector, data){
+    init: function(selector, {data, round_no, onRoundComplete}){
       const self = this;
       self.card_data= data;
+      self.total_no_of_games = data.length/2;
+      self.games_played = 0;
+      self.round_no = round_no;
+      self.onRoundComplete = onRoundComplete;
       self.render(selector);
       self.addButton();
     },
@@ -31,8 +35,22 @@ var Card = function(){
       cardWrapper.innerHTML =  cards;
     },
 
+    removeModal:function(res){
+      const self = this;
+      const {team_1, team_2, round_no, game_no}= res;
+      self.modal.remove();
+      let el = document.getElementById(`round_${round_no}_game_${game_no}_winner`);
+      const arr = [team_1.teamName, team_2.teamName];
+      const rand_value = arr[Math.floor(Math.random() * arr.length)];
+      el.innerHTML = rand_value;
+      if(self.games_played === self.total_no_of_games){
+        self.onRoundComplete(round_no);
+      }
+    },
+
     handleClick:function(res){
-      const modal = new Modal();
+      const self = this;
+      self.modal = new Modal();
       const {team_1, team_2, round_no, game_no}= res;
       let modal_children_str = '';
       modal_children_str += `<div class='row p-50'>`;
@@ -41,17 +59,13 @@ var Card = function(){
           modal_children_str += `<center><h1>Playing....</h1></center>`;
         modal_children_str += `</div>`;
       modal_children_str += `</div>`;
-      modal.init('.modal-wrapper',{
+      self.modal.init('.modal-wrapper',{
         children:modal_children_str
       });
-      modal.render();
-      setTimeout(()=>{
-        modal.remove();
-        let el = document.getElementById(`round_${round_no}_game_${game_no}_winner`);
-        const arr = [team_1.teamName, team_2.teamName];
-        const rand_value = arr[Math.floor(Math.random() * arr.length)];
-        el.innerHTML = rand_value;
-      },2000);
+      self.modal.render();
+      const removeModal = self.removeModal.bind(self, res);
+      setTimeout(removeModal,500);
+      self.games_played++;
     },
 
     addButton: function(){
@@ -62,8 +76,9 @@ var Card = function(){
         const cardData_2 = self.card_data[i+1];
         buttonElm.init(`#card_button_wrapper_${i}`,{
           id:`${cardData_1.teamId}_${cardData_2.teamId}`,
+          class:`round_${self.round_no}_button`,
           label:'Play',
-          onClick:self.handleClick,
+          onClick:self.handleClick.bind(this),
           team_1: cardData_1,
           team_2: cardData_2,
           round_no: 1,

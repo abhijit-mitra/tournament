@@ -210,16 +210,16 @@ var team_data = [
     "location": "Washington"
   },
   {
-    "teamId": 1610612762,
+    "teamId": 1610612795,
     "abbreviation": "UTA",
-    "teamName": "Utah Jazz",
+    "teamName": "Abhijit",
     "simpleName": "Jazz",
     "location": "Utah"
   },
   {
-    "teamId": 1610612764,
+    "teamId": 1610612796,
     "abbreviation": "WAS",
-    "teamName": "Washington Wizards",
+    "teamName": "Bipul",
     "simpleName": "Wizards",
     "location": "Washington"
   }

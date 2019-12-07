@@ -10,7 +10,7 @@ var Button = function(){
       const self = this;
       const {selector, props} = self;
       const wrapper = document.querySelector(selector);
-      const buttonStr = `<button type='button' id='${props.id}' class='btn btn-primary'>${props.label}</button>`;
+      const buttonStr = `<button type='button' id='${props.id}' class='btn btn-primary ${props.class}' ${props.disabled? 'disabled':''}>${props.label}</button>`;
       wrapper.innerHTML =  buttonStr;
     },
 
