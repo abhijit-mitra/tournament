@@ -14,7 +14,7 @@ let Tournament = function(){
       let wrapper = document.querySelector(selector);
       let shell = '<div class="tournament row">';
             shell+= '<div class="Teams col-md-2">';
-              shell+= '<h4>Teams</h4>';
+              shell+= '<h4>Round 1</h4>';
               shell+= '<div class="team_list"></div>';
             shell+='</div>';
           shell+='</div>';
@@ -61,14 +61,15 @@ let Tournament = function(){
       rounds_elm.setAttribute('class','col-md-2');
       self.no_of_teams_left = self.no_of_teams_left/2;
       let current_round_str = '';
-        current_round_str+= '<h4>Round '+round_no+'</h4>';
-        for(var i=1; i<=self.no_of_teams_left;i++){
+        current_round_str+= `<h4>Round ${round_no+1}</h4>`;
+        for(let i=1, j=1; i<=self.no_of_teams_left;i++, j++){
           current_round_str+= '<div id="round_'+round_no+'_pointer_'+i+'" class="relative" style="height:'+(height*2)+'px">'
-            current_round_str+='<div class="absolute" style="top:'+(top-22)+'px">Winner</div>'
+            current_round_str+=`<div id='round_${round_no}_game_${j}_winner' class='absolute' style='top:${top-22}px'>Winner</div>`
             current_round_str+= '<div class="horizontal-line" style="top:'+top+'px"></div>'
             current_round_str+= '<div class="vertical-line" style="top:'+top+'px; height:'+(height)+'px"></div>'
-            current_round_str+= '<div class="horizontal-line" style="top:'+top+'px"></div>'
-            current_round_str+='<div class="absolute" style="top:'+(top+height+4)+'px">Winner</div>'
+            current_round_str+= '<div class="horizontal-line" style="top:'+top+'px"></div>';
+            j++;
+            current_round_str+=`<div id='round_${round_no}_game_${j}_winner' class='absolute' style='top:${top+height+4}px'>Winner</div>`
           current_round_str+='</div>';
         }
       rounds_elm.innerHTML = current_round_str;

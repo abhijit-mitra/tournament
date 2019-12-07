@@ -16,8 +16,8 @@ var Button = function(){
 
     handleClick:function(e){
       const self = this;
-      const {props} = self;
-      props.onClick(e);
+      const {props:{team_1, team_2, round_no, game_no, onClick}} = self;
+      onClick({team_1, team_2, round_no, game_no});
       self.uodateAttribute('disabled', true);
     },
 

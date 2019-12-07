@@ -11,7 +11,7 @@ var Card = function(){
       const self = this;
       let cardWrapper = document.querySelector(selector);
       let cards = '';
-      for(let i=0;i<self.card_data.length;i++){
+      for(let i=0, j=1;i<self.card_data.length;i++,j++){
         let cardData_1 = self.card_data[i];
         let cardData_2 = self.card_data[i+1];
         let card = '<div id="card_wrapper" class="row card_wrapper border p-10">';
@@ -31,17 +31,14 @@ var Card = function(){
       cardWrapper.innerHTML =  cards;
     },
 
-    handleClick:function(e){
+    handleClick:function(res){
       const modal = new Modal();
-      const {id} = e.target;
-      const [team_1_id,team_2_id]= id.split('_');
-      const team_1_data = team_data.find((elm)=>elm.teamId===Number(team_1_id));
-      const team_2_data = team_data.find((elm)=>elm.teamId===Number(team_2_id));
+      const {team_1, team_2, round_no, game_no}= res;
       let modal_children_str = '';
       modal_children_str += `<div class='row p-50'>`;
         modal_children_str += `<div class='col-md-12'>`
-          modal_children_str += `<center><h1>${team_1_data.teamName} vs ${team_2_data.teamName}</h1></center>`;
-          modal_children_str += `<center><h1>Winner is ${team_1_data.teamName}</h1></center>`;
+          modal_children_str += `<center><h1>${team_1.teamName} vs ${team_2.teamName}</h1></center>`;
+          modal_children_str += `<center><h1>Playing....</h1></center>`;
         modal_children_str += `</div>`;
       modal_children_str += `</div>`;
       modal.init('.modal-wrapper',{
@@ -50,12 +47,16 @@ var Card = function(){
       modal.render();
       setTimeout(()=>{
         modal.remove();
-      },6000);
+        let el = document.getElementById(`round_${round_no}_game_${game_no}_winner`);
+        const arr = [team_1.teamName, team_2.teamName];
+        const rand_value = arr[Math.floor(Math.random() * arr.length)];
+        el.innerHTML = rand_value;
+      },2000);
     },
 
     addButton: function(){
       const self = this;
-      for(let i=0;i<self.card_data.length;i++){
+      for(let i=0, j=1;i<self.card_data.length;i++, j++){
         const buttonElm = new Button();
         const cardData_1 = self.card_data[i];
         const cardData_2 = self.card_data[i+1];
@@ -63,6 +64,10 @@ var Card = function(){
           id:`${cardData_1.teamId}_${cardData_2.teamId}`,
           label:'Play',
           onClick:self.handleClick,
+          team_1: cardData_1,
+          team_2: cardData_2,
+          round_no: 1,
+          game_no: j
         });
         buttonElm.render();
         buttonElm.addEvents();

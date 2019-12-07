@@ -8,7 +8,7 @@ var Shell = function(){
     render: function(selector){
       var self = this;
       var wrapper = document.querySelector(selector);
-      var shell = '<div class="shell border p-50">';
+      var shell = '<div class="shell border p-30">';
           shell+='</div>';
       wrapper.innerHTML =  shell;
     },
