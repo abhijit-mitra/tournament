@@ -32,18 +32,40 @@ var Card = function(){
     },
 
     handleClick:function(e){
-      console.log(e.target.id);
+      const modal = new Modal();
+      const {id} = e.target;
+      const [team_1_id,team_2_id]= id.split('_');
+      const team_1_data = team_data.find((elm)=>elm.teamId===Number(team_1_id));
+      const team_2_data = team_data.find((elm)=>elm.teamId===Number(team_2_id));
+      let modal_children_str = '';
+      modal_children_str += `<div class='row p-50'>`;
+        modal_children_str += `<div class='col-md-12'>`
+          modal_children_str += `<center><h1>${team_1_data.teamName} vs ${team_2_data.teamName}</h1></center>`;
+          modal_children_str += `<center><h1>Winner is ${team_1_data.teamName}</h1></center>`;
+        modal_children_str += `</div>`;
+      modal_children_str += `</div>`;
+      modal.init('.modal-wrapper',{
+        children:modal_children_str
+      });
+      modal.render();
+      setTimeout(()=>{
+        modal.remove();
+      },6000);
     },
 
     addButton: function(){
       const self = this;
       for(let i=0;i<self.card_data.length;i++){
         const buttonElm = new Button();
+        const cardData_1 = self.card_data[i];
+        const cardData_2 = self.card_data[i+1];
         buttonElm.init(`#card_button_wrapper_${i}`,{
-          id:`card_button_${i}`,
+          id:`${cardData_1.teamId}_${cardData_2.teamId}`,
           label:'Play',
           onClick:self.handleClick,
         });
+        buttonElm.render();
+        buttonElm.addEvents();
         i++;
       }
     }
