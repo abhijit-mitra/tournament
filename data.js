@@ -10,7 +10,7 @@ var team_data = [
     "teamId": 1610612738,
     "abbreviation": "BOS",
     "teamName": "Boston Celtics",
-    "simpleName": "Celtics",  
+    "simpleName": "Celtics",
     "location": "Boston"
   },
   {
@@ -142,7 +142,7 @@ var team_data = [
   {
     "teamId": 1610612760,
     "abbreviation": "OKC",
-    "teamName": "Oklahoma City Thunder",
+    "teamName": "Oklahoma City",
     "simpleName": "Thunder",
     "location": "Oklahoma City"
   },
