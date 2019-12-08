@@ -61,7 +61,6 @@ let Tournament = function(){
         round_manager.append_rounds(wrapper);
         self.rounds[i]= round_manager;
       }
-      console.log(self.rounds);
 
     }
 
