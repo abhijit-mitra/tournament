@@ -13,8 +13,8 @@ let Tournament = function(){
     render: function(selector){
       let self = this;
       let wrapper = document.querySelector(selector);
-      let shell = '<div class="tournament row">';
-            shell+= '<div class="Teams col-md-2">';
+      let shell = '<div class="tournament">';
+            shell+= '<div class="Teams col">';
               shell+= '<h4>Group Battle</h4>';
               shell+= '<div class="team_list"></div>';
             shell+='</div>';

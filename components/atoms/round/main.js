@@ -20,7 +20,7 @@ let Round = function(){
       const top = height/2;
       let rounds_elm = document.createElement('div');
       rounds_elm.setAttribute('id','Round_'+round_no);
-      rounds_elm.setAttribute('class','col-md-2');
+      rounds_elm.setAttribute('class','col');
       let current_round_str = '';
 
         if(self.no_of_teams_left<1){

@@ -63,3 +63,10 @@
 .m-t-20{
   margin-top: 20px;
 }
+
+.col{
+  position: relative;
+  width:250px;
+  padding: 0 15px;
+  float:left;
+}
