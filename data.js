@@ -224,3 +224,9 @@ var team_data = [
     "location": "Washington"
   }
 ]
+
+function shuffle(arr) {
+  return arr.sort(() => Math.random() - 0.5);
+}
+
+team_data = shuffle(team_data);

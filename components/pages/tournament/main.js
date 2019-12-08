@@ -15,7 +15,7 @@ let Tournament = function(){
       let wrapper = document.querySelector(selector);
       let shell = '<div class="tournament row">';
             shell+= '<div class="Teams col-md-2">';
-              shell+= '<h4>Round 1</h4>';
+              shell+= '<h4>Group Battle</h4>';
               shell+= '<div class="team_list"></div>';
             shell+='</div>';
           shell+='</div>';
@@ -35,6 +35,9 @@ let Tournament = function(){
 
   onRoundComplete: function(round_no){
     let self = this;
+    if(round_no === Object.keys(self.rounds).length){
+      return;
+    }
     self.rounds[round_no].addButton();
   },
 
@@ -58,6 +61,7 @@ let Tournament = function(){
         round_manager.append_rounds(wrapper);
         self.rounds[i]= round_manager;
       }
+      console.log(self.rounds);
 
     }
 

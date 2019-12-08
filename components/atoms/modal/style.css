@@ -14,6 +14,13 @@
 .modal .box{
   background-color: #fff;
   width:50%;
-  height: 50%;
+  height: 70%;
   position: absolute;
+}
+
+img{
+  background-image: url('./world_cup.jpg');
+  background-size: 100%;
+  width: 150px;
+  height: 300px
 }

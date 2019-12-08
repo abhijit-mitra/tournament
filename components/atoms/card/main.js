@@ -38,14 +38,18 @@ var Card = function(){
     removeModal:function(res){
       const self = this;
       const {team_1, team_2, round_no, game_no}= res;
-      self.modal.remove();
       let el = document.getElementById(`round_${round_no}_game_${game_no}_winner`);
       const arr = [team_1.teamName, team_2.teamName];
       const rand_value = arr[Math.floor(Math.random() * arr.length)];
+      let status_elm = document.getElementById('game_status');
+      status_elm.innerHTML =  `Winner is ${rand_value}`;
       el.innerHTML = rand_value;
       if(self.games_played === self.total_no_of_games){
         self.onRoundComplete(round_no);
       }
+      setTimeout(()=>{
+        self.modal.remove();
+      },1000);
     },
 
     handleClick:function(res){
@@ -55,8 +59,9 @@ var Card = function(){
       let modal_children_str = '';
       modal_children_str += `<div class='row p-50'>`;
         modal_children_str += `<div class='col-md-12'>`
-          modal_children_str += `<center><h1>${team_1.teamName} vs ${team_2.teamName}</h1></center>`;
-          modal_children_str += `<center><h1>Playing....</h1></center>`;
+          modal_children_str += `<center><h5>${team_1.teamName} vs ${team_2.teamName}</h5></center>`;
+          modal_children_str += `<center><img class='m-t-20'/></center>`;
+          modal_children_str += `<center><h5 id='game_status' class='m-t-20'>Playing....</h5></center>`;
         modal_children_str += `</div>`;
       modal_children_str += `</div>`;
       self.modal.init('.modal-wrapper',{
