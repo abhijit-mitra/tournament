@@ -23,16 +23,21 @@
     <script src="./components/atoms/button/main.js"></script>
     <script src="./components/atoms/modal/main.js"></script>
     <script>
-      let verify_data=team_data.length, isValid=true;
-      while(verify_data>1){
+      let verify_data=team_data.length, isValid=true, msg='';
+      if(team_data.length>32){
+        msg = 'Tournament is allowed for max 32 teams only.';
+        isValid = false;
+      }
+      while(isValid && verify_data>1){
         verify_data = verify_data/2;
         if(verify_data%1 !== 0){
           isValid = false;
+          msg = 'Provided data is not valid, please check, it should be in the form of 2^n.';
           break;
         }
       }
       if(!isValid){
-        alert('Provided data is not valid, please check, it should be in the form of 2^n.');
+        alert(msg);
       }else{
         var shell = new Shell();
         shell.init('.wrapper');
