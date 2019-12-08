@@ -49,7 +49,7 @@ var Card = function(){
       }
       setTimeout(()=>{
         self.modal.remove();
-      },1000);
+      },500);
     },
 
     handleClick:function(res){
@@ -59,7 +59,7 @@ var Card = function(){
       let modal_children_str = '';
       modal_children_str += `<div class='row p-50'>`;
         modal_children_str += `<div class='col-md-12'>`
-          modal_children_str += `<center><h5>${team_1.teamName} vs ${team_2.teamName}</h5></center>`;
+          modal_children_str += `<center><h5>${team_1.teamName} &nbsp VS &nbsp ${team_2.teamName}</h5></center>`;
           modal_children_str += `<center><img class='m-t-20'/></center>`;
           modal_children_str += `<center><h5 id='game_status' class='m-t-20'>Playing....</h5></center>`;
         modal_children_str += `</div>`;

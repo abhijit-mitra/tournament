@@ -16,7 +16,6 @@
     <div class="modal-wrapper"></div>
   </body>
     <script src="./data.js"></script>
-    <script src="./round_data.js"></script>
     <script src="./main.js"></script>
     <script src="./components/pages/tournament/main.js"></script>
     <script src="./components/atoms/round/main.js"></script>
@@ -24,12 +23,19 @@
     <script src="./components/atoms/button/main.js"></script>
     <script src="./components/atoms/modal/main.js"></script>
     <script>
-      if(team_data.length%4 !== 0){
-        alert('No. of teams should be multiple of 4');
-
+      let verify_data=team_data.length, isValid=true;
+      while(verify_data>1){
+        verify_data = verify_data/2;
+        if(verify_data%1 !== 0){
+          isValid = false;
+          break;
+        }
+      }
+      if(!isValid){
+        alert('Provided data is not valid, please check, it should be in the form of 2^n.');
       }else{
         var shell = new Shell();
-        shell.init('.wrapper');  
+        shell.init('.wrapper');
       }
     </script>
 </html>

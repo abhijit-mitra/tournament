@@ -22,10 +22,12 @@ let Round = function(){
       rounds_elm.setAttribute('id','Round_'+round_no);
       rounds_elm.setAttribute('class','col-md-2');
       let current_round_str = '';
-        current_round_str+= `<h4>Round ${round_no}</h4>`;
 
         if(self.no_of_teams_left<1){
+          current_round_str+= `<h4>Winner</h4>`;
           current_round_str+=`<h5 id='round_${round_no}_game_${1}_winner' class='absolute' style='top:${top-22}px'>Tournament Winner</h5>`
+        }else{
+          current_round_str+= `<h4>Round ${round_no}</h4>`;
         }
 
         for(let i=1, j=1; i<=self.no_of_teams_left;i++, j++){
@@ -57,7 +59,7 @@ let Round = function(){
       }
       setTimeout(()=>{
         self.modal.remove();
-      },1000);
+      },500);
     },
 
     handleClick:function(res){
@@ -67,7 +69,7 @@ let Round = function(){
       let modal_children_str = '';
       modal_children_str += `<div class='row p-50'>`;
         modal_children_str += `<div class='col-md-12'>`
-          modal_children_str += `<center><h5>${team_1.teamName} vs ${team_2.teamName}</h5></center>`;
+          modal_children_str += `<center><h5>${team_1.teamName} &nbsp VS &nbsp ${team_2.teamName}</h5></center>`;
           modal_children_str += `<center><img class='m-t-20'/></center>`;
           modal_children_str += `<center><h5 id='game_status' class='m-t-20'>Playing....</h5></center>`;
         modal_children_str += `</div>`;

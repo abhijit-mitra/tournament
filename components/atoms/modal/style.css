@@ -19,8 +19,9 @@
 }
 
 img{
-  background-image: url('./world_cup.jpg');
+  background-image: url('./giphy.gif');
   background-size: 100%;
-  width: 150px;
-  height: 300px
+  width: 410px;
+  height: 300px;
+  background-repeat: none;
 }
