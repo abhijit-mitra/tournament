@@ -77,7 +77,7 @@ let Round = function(){
       });
       self.modal.render();
       const removeModal = self.removeModal.bind(self, res);
-      setTimeout(removeModal,500);
+      setTimeout(removeModal,5000);
       self.games_played++;
     },
 
